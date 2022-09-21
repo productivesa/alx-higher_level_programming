@@ -2,6 +2,7 @@
 import random
 number = random.randint(-10000, 10000)
 
+
 def last_number1(n):
     temp = str(n)
     last = int(temp[len(temp)-1])
@@ -9,10 +10,12 @@ def last_number1(n):
         return last * -1
     return last
 
+
 def last_number(n):
     if n < 0:
         return -1 * ((-1 * n) % 10)
     return (n % 10)
+
 
 last_num = last_number(number)
 if last_num > 5:
