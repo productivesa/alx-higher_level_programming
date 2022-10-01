@@ -3,4 +3,4 @@ def number_keys(a_dictionary):
     keys = 0
     for key in a_dictionary.keys():
         keys += 1
-        return keys
+    return keys
