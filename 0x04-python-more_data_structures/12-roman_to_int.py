@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
-    roman_num = {
+    if type_if_roman(roman_string) == str:
+        roman_number = {
             "I": 1,
             "V": 5,
             "X": 10,
@@ -8,17 +9,37 @@ def roman_to_int(roman_string):
             "C": 100,
             "D": 500,
             "M": 1000
-    }
-    number = 0
+                        }
+        sum = 0
+        chk = 0
 
-    for i in range(len(roman_string)):
-        if roman_num.get(roman_string[i], 0) == 0:
-            return (0)1
-
-        if (i != (len(roman_string) - 1) and
-                roman_num[roman_string[i]] < roman_num[roman_string[i + 1]]):
-            number += roman_num[roman_string[i]] * -1
-
-        else:
-            number += roman_num[roman_string[i]]
-    return (number)
+        for x in range(len(roman_string)):
+            if chk:
+                chk = 0
+                continue
+            for key in roman_number:
+                if roman_string[x] == key and x != len(roman_string) - 1:
+                    if roman_string[x] == 'I' and roman_string[x + 1] == 'V':
+                        sum += 4
+                        chk = 1
+                    elif roman_string[x] == 'I' and roman_string[x + 1] == 'X':
+                        sum += 9
+                        chk = 1
+                    elif roman_string[x] == 'X' and roman_string[x + 1] == 'L':
+                        sum += 40
+                        chk = 1
+                    elif roman_string[x] == 'X' and roman_string[x + 1] == 'C':
+                        sum += 90
+                        chk = 1
+                    elif roman_string[x] == 'C' and roman_string[x + 1] == 'D':
+                        sum += 400
+                        chk = 1
+                    elif roman_string[x] == 'C' and roman_string[x + 1] == 'M':
+                        sum += 900
+                        chk = 1
+                    else:
+                        sum += roman_number[key]
+                elif roman_string[x] == key:
+                    sum += roman_number[key]
+        return sum
+    return 0
