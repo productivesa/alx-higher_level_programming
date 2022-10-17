@@ -41,5 +41,3 @@ class Rectangle:
             if value < 0:
                 raise TypeError("height should >= 0")
             self.__height = value
-
-
