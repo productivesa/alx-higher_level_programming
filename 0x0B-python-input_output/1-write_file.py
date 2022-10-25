@@ -5,6 +5,6 @@ and returns the number of characters written:"""
 
 
 def write_file(filename="", text=""):
-    with open(filename, 'w', encoding="utf-8") as fi:
-        data_written = fi.write(text)
-    return data_written
+    """writes the specified text to file"""
+    with open(filename, 'w', encoding="UTF-8") as fi:
+        return fi.write(text)
