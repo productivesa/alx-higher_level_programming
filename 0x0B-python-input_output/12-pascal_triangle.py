@@ -12,10 +12,10 @@ def pascal_triangle(n):
 
     triangles = [[1]]
     while len(triangles) != n:
-        tri = triangles[-1]
-        hol = [1]
-        for x in range(len(tri) - 1):
-            hol.append(tri[x] + tri[x + 1])
-        hol.append(1)
+        pasc = triangles[-1]
+        tmp = [1]
+        for x in range(len(pasc) - 1):
+            tmp.append(pasc[x] + pasc[x + 1])
+        tmp.append(1)
         triangles.append(tmp)
     return triangles
