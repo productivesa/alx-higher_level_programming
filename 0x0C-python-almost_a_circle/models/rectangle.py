@@ -1,101 +1,106 @@
 #!/usr/bin/python3
-# rectangle.py
-"""Defines a rectangle class."""
+#rectangle
+"""This is the Rectangle module.
+Contains the Rectangle class that inherits from Base.
+"""
 from models.base import Base
 
 
 class Rectangle(Base):
-    """Represent a rectangle."""
+    """This class inherits from Base and defines a Rectangle object.
+    Attributes:
+        __width (int): the width of the rectangle.
+        __height (int): the height of the rectangle.
+        __x (int): the horizontal (x) padding of the rectangle.
+        __y (int): the vertical (y) padding of the rectangle.
+    """
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """Initialize a new Rectangle.
-
-        attributes:
-            width (int): The width of the new Rectangle.
-            height (int): The height of the new Rectangle.
-            x (int): The x coordinate of the new Rectangle.
-            y (int): The y coordinate of the new Rectangle.
-            id (int): The identity of the new Rectangle.
-        Raises:
-            TypeError: If either of width or height is not an int.
-            ValueError: If either of width or height <= 0.
-            TypeError: If either of x or y is not an int.
-            ValueError: If either of x or y < 0.
+        """Initializes the default attributes of the Base object.
+        Args:
+            width (int): the wanted width of the rectangle.
+            height (int): the wanted height of the rectangle.
+            x (int): the wanted horizontal (x) padding of the rectangle.
+            y (int): the wanted vertical (y) padding of the rectangle.
+            id (int): the wanted identifier of the Base object.
         """
-
+        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
         self.y = y
-        super().__init__(id)
 
+    def __str__(self):
+        """Overrides the default behaviour of the __str__ method."""
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+            self.id, self.x, self.y, self.width, self.height)
+
+    # width attribute getter and setter.
     @property
     def width(self):
-        """Set/get the width of the Rectangle."""
+        """Get and Set the width attribute of the Rectangle."""
         return self.__width
 
     @width.setter
     def width(self, value):
-        if type(value) != int:
+        if type(value) is not int:
             raise TypeError("width must be an integer")
         if value <= 0:
             raise ValueError("width must be > 0")
         self.__width = value
 
+    # height attribute getter and setter.
     @property
     def height(self):
-        """Set/get the height of the Rectangle."""
+        """Get and Set the height attribute of the Rectangle."""
         return self.__height
 
     @height.setter
     def height(self, value):
-        if type(value) != int:
+        if type(value) is not int:
             raise TypeError("height must be an integer")
         if value <= 0:
             raise ValueError("height must be > 0")
         self.__height = value
 
+    # x attribute getter and setter.
     @property
     def x(self):
-        """Set/get the x coordinate of the Rectangle."""
+        """Get and Set the x attribute of the Rectangle."""
         return self.__x
 
     @x.setter
     def x(self, value):
-        if type(value) != int:
+        if type(value) is not int:
             raise TypeError("x must be an integer")
         if value < 0:
             raise ValueError("x must be >= 0")
         self.__x = value
 
+    # y attribute getter and setter.
     @property
     def y(self):
-        """Set/get the y coordinate of the Rectangle."""
+        """Get and Set the y attribute of the Rectangle."""
         return self.__y
 
     @y.setter
     def y(self, value):
-        if type(value) != int:
+        if type(value) is not int:
             raise TypeError("y must be an integer")
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
 
+    # Methods
     def area(self):
-        """Return the area of the Rectangle."""
+        """Returns the area value of the Rectangle instance."""
         return self.width * self.height
 
     def display(self):
-        """Print the Rectangle using the `#` character."""
-        if self.width == 0 or self.height == 0:
-            print("")
-            return
-
-        [print("") for y in range(self.y)]
-        for h in range(self.height):
-            [print(" ", end="") for x in range(self.x)]
-            [print("#", end="") for w in range(self.width)]
-            print("")
+        """Prints in stdout the Rectangle instance with the character #."""
+        print('\n' * self.y, end='')
+        for height in range(self.height):
+            print(' ' * self.x + '#' * self.width)
 
     def update(self, *args, **kwargs):
         """Updates the Rectangle attributes.
@@ -106,8 +111,8 @@ class Rectangle(Base):
         dct = {}
         if args is not None and len(args) > 0:
             keys = ['id', 'width', 'height', 'x', 'y']
-            for x in range(len(args) if len(args) <= 5 else 5):
-                dct[keys[x]] = args[x]
+            for i in range(len(args) if len(args) <= 5 else 5):
+                dct[keys[i]] = args[i]
         else:
             dct = kwargs
 
@@ -117,18 +122,10 @@ class Rectangle(Base):
                     self.__init__(self.width, self.height, self.x, self.y)
                 else:
                     setattr(self, key, value)
-    def to_dictionary(self):
-        """Return the dictionary representation of a Rectangle."""
-        return {
-            "id": self.id,
-            "width": self.width,
-            "height": self.height,
-            "x": self.x,
-            "y": self.y
-        }
 
-    def __str__(self):
-        """Overide __str__ method."""
-        return "[Rectangle] ({}) {}/{} - {}/{}".format(
-            self.id,self.x, self.y,
-            self.width, self.height)
+    def to_dictionary(self):
+        """Returns the dictionary representation of a Rectangle"""
+        return {
+            'id': self.id, 'width': self.width, 'height': self.height,
+            'x': self.x, 'y': self.y
+        }
