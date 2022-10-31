@@ -1,37 +1,34 @@
 #!/usr/bin/python3
-"""This is the Rectangle module.
-Contains the Rectangle class that inherits from Base.
-"""
+# rectangle.py
+"""Defines a rectangle class."""
 from models.base import Base
 
 
 class Rectangle(Base):
-    """This class inherits from Base and defines a Rectangle object.
-    Attributes:
-        __width (int): the width of the rectangle.
-        __height (int): the height of the rectangle.
-        __x (int): the horizontal (x) padding of the rectangle.
-        __y (int): the vertical (y) padding of the rectangle.
-    """
+    """Represent a rectangle."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """Initializes the default attributes of the Base object.
+        """Initialize a new Rectangle.
+
+        attributes:
+            width (int): The width of the new Rectangle.
+            height (int): The height of the new Rectangle.
+            x (int): The x coordinate of the new Rectangle.
+            y (int): The y coordinate of the new Rectangle.
+            id (int): The identity of the new Rectangle.
         Raises:
             TypeError: If either of width or height is not an int.
             ValueError: If either of width or height <= 0.
             TypeError: If either of x or y is not an int.
             ValueError: If either of x or y < 0.
         """
-        super().__init__(id)
+
         self.width = width
         self.height = height
         self.x = x
         self.y = y
-        
-    def __str__(self):
-        """Overrides the default behaviour of the __str__ method."""
-        return "[Rectangle] ({}) {}/{} - {}/{}".format(
-            self.id, self.x, self.y, self.width, self.height)
+        super().__init__(id)
+
     @property
     def width(self):
         """Set/get the width of the Rectangle."""
@@ -101,17 +98,16 @@ class Rectangle(Base):
             print("")
 
     def update(self, *args, **kwargs):
-        """Update the Rectangle.
-
+        """Updates the Rectangle attributes.
         Args:
-            *args (list): attributes to be modified [id, width, height, x, y].
-            **kwargs (dict): attributes to be modified.
+            args (list): attributes to be modified [id, width, height, x, y].
+            kwargs (dict): attributes to be modified.
         """
-          dct = {}
+        dct = {}
         if args is not None and len(args) > 0:
             keys = ['id', 'width', 'height', 'x', 'y']
-            for i in range(len(args) if len(args) <= 5 else 5):
-                dct[keys[i]] = args[i]
+            for x in range(len(args) if len(args) <= 5 else 5):
+                dct[keys[x]] = args[x]
         else:
             dct = kwargs
 
@@ -121,10 +117,18 @@ class Rectangle(Base):
                     self.__init__(self.width, self.height, self.x, self.y)
                 else:
                     setattr(self, key, value)
-
-
     def to_dictionary(self):
         """Return the dictionary representation of a Rectangle."""
         return {
-            "id": self.id,"width": self.width,"height": self.height,
-            "x": self.x,"y": self.y
+            "id": self.id,
+            "width": self.width,
+            "height": self.height,
+            "x": self.x,
+            "y": self.y
+        }
+
+    def __str__(self):
+        """Overide __str__ method."""
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+            self.id,self.x, self.y,
+            self.width, self.height)
