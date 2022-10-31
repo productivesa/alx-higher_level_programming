@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-#rectangle
 """This is the Rectangle module.
 Contains the Rectangle class that inherits from Base.
 """
