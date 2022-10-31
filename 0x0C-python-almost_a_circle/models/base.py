@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-
+"""This is the Base module.
+Contains the Base class which will be the
+“base” of all other classes in this project.
+"""
 import json
 import csv
 import turtle
