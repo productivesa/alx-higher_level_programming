@@ -1,9 +1,9 @@
 #!/usr/bin/node
-function factorial (n) {
-  if ((isNaN(n)) || (n === 1)) {
+function factorial (g) {
+  if ((isNaN(g)) || (g === 1)) {
     return 1;
   } else {
-    return n * factorial(n - 1);
+    return factorial(g - 1) * g;
   }
 }
 
