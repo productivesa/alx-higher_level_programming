@@ -7,4 +7,4 @@ How to use the Python package requests #requestsiswaysimplerthanurllib
 How to make HTTP GET request
 How to make HTTP POST/PUT/etc. request
 How to fetch JSON resources
-How to manipulate data from an external service.
+How to manipulate data from an external service
